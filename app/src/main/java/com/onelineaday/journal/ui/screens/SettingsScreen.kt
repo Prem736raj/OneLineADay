@@ -249,6 +249,48 @@ fun SettingsScreen(
                 )
                 
                 SettingsItem(
+                    icon = Icons.Rounded.Feedback,
+                    title = "Send Feedback",
+                    subtitle = "Share your thoughts or issues",
+                    onClick = {
+                        val intent = Intent(Intent.ACTION_SENDTO).apply {
+                            data = Uri.parse("mailto:")
+                            putExtra(Intent.EXTRA_EMAIL, arrayOf("developeraisteps@gmail.com"))
+                            putExtra(Intent.EXTRA_SUBJECT, "Feedback for One Line A Day")
+                        }
+                        try {
+                            context.startActivity(intent)
+                        } catch (e: Exception) {
+                            Toast.makeText(context, "No email client found", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                )
+                
+                HorizontalDivider(
+                    modifier = Modifier.padding(start = 56.dp),
+                    color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
+                )
+                
+                SettingsItem(
+                    icon = Icons.Rounded.PrivacyTip,
+                    title = "Privacy Policy",
+                    subtitle = "Read our privacy terms",
+                    onClick = {
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://prem736raj.github.io/OneLineADay/privacy-policy.html"))
+                        try {
+                            context.startActivity(intent)
+                        } catch (e: Exception) {
+                            Toast.makeText(context, "Cannot open browser", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                )
+                
+                HorizontalDivider(
+                    modifier = Modifier.padding(start = 56.dp),
+                    color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
+                )
+                
+                SettingsItem(
                     icon = Icons.Rounded.Code,
                     title = "Made with ❤️",
                     subtitle = "One Line A Day",
