@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - One Line A Day</title>
+    <!-- Modern Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #9333ea;
+            --primary-light: #a855f7;
+            --primary-gradient: linear-gradient(135deg, #9333ea 0%, #ec4899 100%);
+            --bg-dark: #090514;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f3e8ff;
+            --text-muted: #c084fc;
+            --text-dim: #9ca3af;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Decorative Background Orbs */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(147, 51, 234, 0.15) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            bottom: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.12) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Premium Glassmorphic Header */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            filter: drop-shadow(0 0 15px rgba(147, 51, 234, 0.5));
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .last-updated {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-top: 15px;
+        }
+
+        /* Content Card Styling */
+        main {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            backdrop-filter: blur(12px);
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        section {
+            margin-bottom: 35px;
+        }
+
+        section:last-of-type {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-light);
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p {
+            font-size: 1.05rem;
+            color: rgba(243, 232, 255, 0.85);
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        p strong {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        ul {
+            list-style: none;
+            margin-bottom: 15px;
+            padding-left: 5px;
+        }
+
+        li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+            color: rgba(243, 232, 255, 0.85);
+            font-weight: 300;
+        }
+
+        li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--primary-light);
+        }
+
+        .highlight-box {
+            background: rgba(147, 51, 234, 0.1);
+            border-left: 4px solid var(--primary-light);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            font-weight: 400;
+            color: var(--text-main);
+        }
+
+        a {
+            color: var(--primary-light);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--primary-light);
+            transition: all 0.2s ease;
+        }
+
+        a:hover {
+            color: #fff;
+            border-bottom-style: solid;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 10px;
+            }
+            header, main {
+                padding: 25px 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">📝</div>
+            <h1>Privacy Policy</h1>
+            <div class="subtitle">One Line A Day — Your Private Local Journal</div>
+            <div class="last-updated">Last Updated: May 31, 2026</div>
+        </header>
+
+        <main>
+            <section>
+                <h2>1. Overview</h2>
+                <p>Welcome to <strong>One Line A Day</strong>. We respect your privacy and are committed to protecting it. This Privacy Policy details how we handle information in the application.</p>
+                <div class="highlight-box">
+                    <p><strong>Local-First Guarantee:</strong> One Line A Day is a local-first application. All of your journal entries, selected moods, and photo attachments are stored directly and exclusively on your device. We do not operate servers, and we do not collect, transmit, share, or sell your personal data.</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>2. Information Collection and Storage</h2>
+                <p>All data processed by the application is kept private and stored locally on your device:</p>
+                <ul>
+                    <li><strong>Journal Entries & Moods:</strong> Written entries and mood selections are stored in a local, encrypted-by-default SQLite database managed by the Android Room database framework.</li>
+                    <li><strong>Photos:</strong> When you attach photos to your journal entries, the app copies the image files into its private internal application directory (<code>filesDir</code>). These files are inaccessible to other apps and are not uploaded to any server.</li>
+                    <li><strong>Configuration Data:</strong> Application settings, including your dark mode preference and reminder schedules, are saved locally on the device using Android SharedPreferences and DataStore.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>3. Device Permissions</h2>
+                <p>To support its core journaling features, the app requests the following system permissions:</p>
+                <ul>
+                    <li><strong>Notifications (<code>POST_NOTIFICATIONS</code>):</strong> Used only to deliver daily reminder alerts prompting you to write your entry. This permission is requested at runtime on supported Android versions, and you can disable reminders or permissions at any time.</li>
+                    <li><strong>Receive Boot Completed (<code>RECEIVE_BOOT_COMPLETED</code>):</strong> Used to automatically restore and reschedule your configured daily reminder notifications whenever your device is restarted.</li>
+                </ul>
+                <p>The app does not request or require permissions to access your contacts, location, accounts, microphone, camera, or general external file storage directories.</p>
+            </section>
+
+            <section>
+                <h2>4. Third-Party Libraries</h2>
+                <p>The app uses a small number of open-source third-party dependencies to improve functionality:</p>
+                <ul>
+                    <li><strong>Coil:</strong> Used locally to load and display attached images on the screens.</li>
+                    <li><strong>iText PDF:</strong> Used locally on your device to compile and render your journal database into a shareable PDF format.</li>
+                </ul>
+                <p>These libraries operate fully locally within the app and do not collect, store, or transmit your personal data externally.</p>
+            </section>
+
+            <section>
+                <h2>5. Security of Your Data</h2>
+                <p>Because all data remains strictly on your own physical device, the security of your journal relies on your device's overall security settings. We recommend securing your device with a PIN, pattern, password, or biometric lock to prevent unauthorized physical access to your device and journal entries.</p>
+            </section>
+
+            <section>
+                <h2>6. Children's Privacy</h2>
+                <p>Our application is completely safe for all users, including children. We do not collect any personal data whatsoever, making the application fully compliant with child privacy laws globally, including COPPA and GDPR.</p>
+            </section>
+
+            <section>
+                <h2>7. Contact Us</h2>
+                <p>If you have any questions, suggestions, or concerns regarding this privacy policy, feel free to contact us via email:</p>
+                <p><strong>Developer Support:</strong> <a href="mailto:prem736raj@gmail.com">prem736raj@gmail.com</a></p>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 One Line A Day. Built with care for your privacy.</p>
+        </footer>
+    </div>
+</body>
+</html>

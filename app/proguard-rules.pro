@@ -8,3 +8,6 @@
 # iText PDF
 -keep class com.itextpdf.** { *; }
 -dontwarn com.itextpdf.**
+
+# SLF4J (iText dependency)
+-dontwarn org.slf4j.**
