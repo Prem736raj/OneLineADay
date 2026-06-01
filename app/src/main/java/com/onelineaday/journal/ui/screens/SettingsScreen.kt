@@ -26,8 +26,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.onelineaday.journal.R
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.onelineaday.journal.notifications.ReminderManager
@@ -74,9 +76,9 @@ fun SettingsScreen(
             notificationsEnabled = true
             prefs.edit().putBoolean("reminders_enabled", true).apply()
             ReminderManager(context).scheduleDailyReminder(reminderHour, reminderMinute)
-            Toast.makeText(context, "Daily reminders enabled! 🔔", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.toast_reminders_enabled), Toast.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(context, "Permission needed for reminders", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.toast_permission_needed), Toast.LENGTH_SHORT).show()
         }
     }
     
@@ -98,12 +100,12 @@ fun SettingsScreen(
             notificationsEnabled = true
             prefs.edit().putBoolean("reminders_enabled", true).apply()
             ReminderManager(context).scheduleDailyReminder(reminderHour, reminderMinute)
-            Toast.makeText(context, "Daily reminders enabled! 🔔", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.toast_reminders_enabled), Toast.LENGTH_SHORT).show()
         } else {
             notificationsEnabled = false
             prefs.edit().putBoolean("reminders_enabled", false).apply()
             ReminderManager(context).cancelReminder()
-            Toast.makeText(context, "Reminders disabled", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, context.getString(R.string.toast_reminders_disabled), Toast.LENGTH_SHORT).show()
         }
     }
     
@@ -114,7 +116,7 @@ fun SettingsScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = "Settings",
+                        text = stringResource(R.string.settings),
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold
                     )
@@ -135,11 +137,11 @@ fun SettingsScreen(
             Spacer(modifier = Modifier.height(8.dp))
             
             // Appearance Section
-            SettingsSection(title = "Appearance") {
+            SettingsSection(title = stringResource(R.string.settings_appearance)) {
                 SettingsToggleItem(
                     icon = Icons.Rounded.DarkMode,
-                    title = "Dark Mode",
-                    subtitle = "Use dark theme",
+                    title = stringResource(R.string.dark_mode),
+                    subtitle = stringResource(R.string.settings_dark_mode_subtitle),
                     isChecked = isDarkMode,
                     onCheckedChange = onDarkModeChange
                 )
@@ -148,14 +150,14 @@ fun SettingsScreen(
             Spacer(modifier = Modifier.height(24.dp))
             
             // Notifications Section
-            SettingsSection(title = "Notifications") {
+            SettingsSection(title = stringResource(R.string.settings_notifications)) {
                 SettingsToggleItem(
                     icon = Icons.Rounded.Notifications,
-                    title = "Daily Reminder",
+                    title = stringResource(R.string.notifications),
                     subtitle = if (notificationsEnabled) 
-                        "Reminder at ${String.format("%02d:%02d", reminderHour, reminderMinute)}" 
+                        stringResource(R.string.settings_reminder_at, String.format("%02d:%02d", reminderHour, reminderMinute)) 
                     else 
-                        "Get a gentle nudge to write",
+                        stringResource(R.string.settings_reminder_nudge),
                     isChecked = notificationsEnabled,
                     onCheckedChange = { toggleNotifications(it) }
                 )
@@ -168,7 +170,7 @@ fun SettingsScreen(
                     
                     SettingsItem(
                         icon = Icons.Rounded.Schedule,
-                        title = "Reminder Time",
+                        title = stringResource(R.string.reminder_time),
                         subtitle = String.format("%02d:%02d", reminderHour, reminderMinute),
                         onClick = { showTimePicker = true }
                     )
@@ -178,11 +180,11 @@ fun SettingsScreen(
             Spacer(modifier = Modifier.height(24.dp))
             
             // Data Section
-            SettingsSection(title = "Data") {
+            SettingsSection(title = stringResource(R.string.settings_data)) {
                 SettingsItem(
                     icon = Icons.Rounded.PictureAsPdf,
-                    title = "Export to PDF",
-                    subtitle = "Download your journal as PDF",
+                    title = stringResource(R.string.export_pdf),
+                    subtitle = stringResource(R.string.settings_export_pdf_subtitle),
                     onClick = {
                         scope.launch {
                             isExporting = true
@@ -192,7 +194,7 @@ fun SettingsScreen(
                             } catch (e: Exception) {
                                 Toast.makeText(
                                     context, 
-                                    "Export failed: ${e.message}", 
+                                    context.getString(R.string.toast_export_failed, e.message), 
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
@@ -211,10 +213,10 @@ fun SettingsScreen(
                 
                 SettingsItem(
                     icon = Icons.Rounded.Backup,
-                    title = "Backup Data",
-                    subtitle = "Coming soon",
+                    title = stringResource(R.string.settings_backup),
+                    subtitle = stringResource(R.string.settings_coming_soon),
                     onClick = { 
-                        Toast.makeText(context, "Coming soon!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(R.string.toast_coming_soon), Toast.LENGTH_SHORT).show()
                     },
                     enabled = false
                 )
@@ -223,11 +225,11 @@ fun SettingsScreen(
             Spacer(modifier = Modifier.height(24.dp))
             
             // About Section
-            SettingsSection(title = "About") {
+            SettingsSection(title = stringResource(R.string.about)) {
                 SettingsItem(
                     icon = Icons.Rounded.Info,
-                    title = "Version",
-                    subtitle = "1.0.0",
+                    title = stringResource(R.string.version),
+                    subtitle = stringResource(R.string.settings_version_number),
                     onClick = { }
                 )
                 
@@ -238,18 +240,18 @@ fun SettingsScreen(
                 
                 SettingsItem(
                     icon = Icons.Rounded.Feedback,
-                    title = "Send Feedback",
-                    subtitle = "Share your thoughts or issues",
+                    title = stringResource(R.string.settings_send_feedback),
+                    subtitle = stringResource(R.string.settings_feedback_subtitle),
                     onClick = {
                         val intent = Intent(Intent.ACTION_SENDTO).apply {
                             data = Uri.parse("mailto:")
                             putExtra(Intent.EXTRA_EMAIL, arrayOf("developeraisteps@gmail.com"))
-                            putExtra(Intent.EXTRA_SUBJECT, "Feedback for One Line A Day")
+                            putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.settings_feedback_subject))
                         }
                         try {
                             context.startActivity(intent)
                         } catch (e: Exception) {
-                            Toast.makeText(context, "No email client found", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, context.getString(R.string.toast_no_email_client), Toast.LENGTH_SHORT).show()
                         }
                     }
                 )
@@ -261,15 +263,15 @@ fun SettingsScreen(
                 
                 SettingsItem(
                     icon = Icons.Rounded.Share,
-                    title = "Share this app",
-                    subtitle = "Share with your friends",
+                    title = stringResource(R.string.settings_share_app),
+                    subtitle = stringResource(R.string.settings_share_subtitle),
                     onClick = {
                         val shareIntent = Intent(Intent.ACTION_SEND).apply {
                             type = "text/plain"
-                            putExtra(Intent.EXTRA_SUBJECT, "One Line A Day")
-                            putExtra(Intent.EXTRA_TEXT, "Check out this amazing journaling app: https://play.google.com/store/apps/details?id=${context.packageName}")
+                            putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.app_name))
+                            putExtra(Intent.EXTRA_TEXT, context.getString(R.string.settings_share_text, context.packageName))
                         }
-                        context.startActivity(Intent.createChooser(shareIntent, "Share app via"))
+                        context.startActivity(Intent.createChooser(shareIntent, context.getString(R.string.settings_share_chooser)))
                     }
                 )
 
@@ -280,8 +282,8 @@ fun SettingsScreen(
 
                 SettingsItem(
                     icon = Icons.Rounded.Star,
-                    title = "Rate this app",
-                    subtitle = "Leave a review on Play Store",
+                    title = stringResource(R.string.settings_rate_app),
+                    subtitle = stringResource(R.string.settings_rate_subtitle),
                     onClick = {
                         try {
                             context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=${context.packageName}")))
@@ -298,8 +300,8 @@ fun SettingsScreen(
                 
                 SettingsItem(
                     icon = Icons.Rounded.PrivacyTip,
-                    title = "Privacy Policy",
-                    subtitle = "Read our privacy terms",
+                    title = stringResource(R.string.settings_privacy_policy),
+                    subtitle = stringResource(R.string.settings_privacy_subtitle),
                     onClick = onNavigateToPrivacyPolicy
                 )
             }
@@ -328,7 +330,7 @@ fun SettingsScreen(
                     Spacer(modifier = Modifier.height(12.dp))
                     
                     Text(
-                        text = "One Line A Day",
+                        text = stringResource(R.string.app_name),
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onBackground
@@ -337,7 +339,7 @@ fun SettingsScreen(
                     Spacer(modifier = Modifier.height(4.dp))
                     
                     Text(
-                        text = "Capture life, one line at a time",
+                        text = stringResource(R.string.settings_app_tagline),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -345,7 +347,7 @@ fun SettingsScreen(
                     Spacer(modifier = Modifier.height(16.dp))
                     
                     Text(
-                        text = "${uiState.totalEntries} memories captured",
+                        text = stringResource(R.string.settings_memories_captured, uiState.totalEntries),
                         style = MaterialTheme.typography.labelLarge,
                         color = MaterialTheme.colorScheme.primary
                     )
@@ -365,7 +367,7 @@ fun SettingsScreen(
         
         AlertDialog(
             onDismissRequest = { showTimePicker = false },
-            title = { Text("Set Reminder Time") },
+            title = { Text(stringResource(R.string.settings_set_reminder_time)) },
             text = {
                 TimePicker(state = timePickerState)
             },
@@ -383,18 +385,18 @@ fun SettingsScreen(
                         ReminderManager(context).scheduleDailyReminder(reminderHour, reminderMinute)
                         Toast.makeText(
                             context, 
-                            "Reminder set for ${String.format("%02d:%02d", reminderHour, reminderMinute)}", 
+                            context.getString(R.string.settings_reminder_set_for, String.format("%02d:%02d", reminderHour, reminderMinute)), 
                             Toast.LENGTH_SHORT
                         ).show()
                         showTimePicker = false
                     }
                 ) {
-                    Text("Set")
+                    Text(stringResource(R.string.settings_set))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showTimePicker = false }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.cancel))
                 }
             }
         )

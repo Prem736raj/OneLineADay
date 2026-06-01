@@ -27,6 +27,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.onelineaday.journal.R
 import com.onelineaday.journal.data.JournalEntry
 import com.onelineaday.journal.data.Mood
 import com.onelineaday.journal.ui.components.*
@@ -82,7 +84,7 @@ fun HomeScreen(
             // Header
             Column {
                 Text(
-                    text = "Today",
+                    text = stringResource(R.string.today),
                     style = MaterialTheme.typography.displaySmall,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onBackground
@@ -123,7 +125,7 @@ fun HomeScreen(
                                 color = SunsetOrange
                             )
                             Text(
-                                text = "day streak",
+                                text = stringResource(R.string.home_day_streak),
                                 style = MaterialTheme.typography.labelSmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -153,7 +155,7 @@ fun HomeScreen(
                                 color = AccentTeal
                             )
                             Text(
-                                text = "memories",
+                                text = stringResource(R.string.home_memories),
                                 style = MaterialTheme.typography.labelSmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -200,7 +202,7 @@ fun HomeScreen(
                     StylishTextInput(
                         value = entryText,
                         onValueChange = { entryText = it },
-                        placeholder = "Write your line for today..."
+                        placeholder = stringResource(R.string.write_your_line)
                     )
                     
                     Spacer(modifier = Modifier.height(20.dp))
@@ -239,7 +241,7 @@ fun HomeScreen(
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
-                            text = if (uiState.todayEntry != null) "Update Entry" else "Save Entry",
+                            text = if (uiState.todayEntry != null) stringResource(R.string.home_update_entry) else stringResource(R.string.home_save_entry),
                             style = MaterialTheme.typography.labelLarge
                         )
                     }
@@ -253,7 +255,7 @@ fun HomeScreen(
                 EmptyStateMessage()
             } else if (uiState.todayEntry != null) {
                 Text(
-                    text = "✨ You've captured today's moment!",
+                    text = stringResource(R.string.home_today_captured),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.primary,
                     textAlign = TextAlign.Center,
@@ -290,7 +292,7 @@ fun EmptyStateMessage() {
         Spacer(modifier = Modifier.height(16.dp))
         
         Text(
-            text = "Start Your Journey",
+            text = stringResource(R.string.home_start_journey),
             style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onBackground
@@ -299,7 +301,7 @@ fun EmptyStateMessage() {
         Spacer(modifier = Modifier.height(8.dp))
         
         Text(
-            text = "Write just one line about your day.\nIt only takes 10 seconds!",
+            text = stringResource(R.string.home_start_writing),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center

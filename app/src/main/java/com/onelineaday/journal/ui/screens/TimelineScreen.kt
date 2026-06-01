@@ -20,6 +20,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.onelineaday.journal.R
 import com.onelineaday.journal.data.JournalEntry
 import com.onelineaday.journal.data.Mood
 import com.onelineaday.journal.ui.components.*
@@ -90,7 +92,7 @@ fun TimelineScreen(
                     title = {
                         if (!showSearch) {
                             Text(
-                                text = "Timeline",
+                                text = stringResource(R.string.timeline),
                                 style = MaterialTheme.typography.headlineMedium,
                                 fontWeight = FontWeight.Bold
                             )
@@ -108,7 +110,7 @@ fun TimelineScreen(
                                     searchQuery = it
                                     viewModel.search(it)
                                 },
-                                placeholder = { Text("Search entries...") },
+                                placeholder = { Text(stringResource(R.string.timeline_search)) },
                                 singleLine = true,
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -132,7 +134,7 @@ fun TimelineScreen(
                         ) {
                             Icon(
                                 imageVector = if (showSearch) Icons.Rounded.Close else Icons.Rounded.Search,
-                                contentDescription = if (showSearch) "Close search" else "Search"
+                                contentDescription = if (showSearch) stringResource(R.string.timeline_close_search) else stringResource(R.string.timeline_open_search)
                             )
                         }
                     },
@@ -166,7 +168,7 @@ fun TimelineScreen(
                         text = if (searchQuery.isNotEmpty()) 
                             "No entries found" 
                         else 
-                            "Your Timeline Awaits",
+                            stringResource(R.string.timeline_your_timeline_awaits),
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onBackground
@@ -176,9 +178,9 @@ fun TimelineScreen(
                     
                     Text(
                         text = if (searchQuery.isNotEmpty())
-                            "Try a different search term"
+                            stringResource(R.string.timeline_try_different)
                         else
-                            "Start writing to build your beautiful timeline of memories",
+                            stringResource(R.string.timeline_start_writing),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         textAlign = TextAlign.Center
@@ -275,7 +277,7 @@ fun MonthHeader(
             color = MaterialTheme.colorScheme.primaryContainer
         ) {
             Text(
-                text = "$entryCount ${if (entryCount == 1) "entry" else "entries"}",
+                text = if (entryCount == 1) stringResource(R.string.timeline_entry_count, entryCount) else stringResource(R.string.timeline_entries_count, entryCount),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onPrimaryContainer,
                 modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp)
@@ -301,7 +303,7 @@ fun EditEntryDialog(
         onDismissRequest = onDismiss,
         title = {
             Text(
-                text = "Edit Entry",
+                text = stringResource(R.string.timeline_edit_entry),
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold
             )
@@ -320,7 +322,7 @@ fun EditEntryDialog(
                 
                 // Mood picker
                 Text(
-                    text = "Mood",
+                    text = stringResource(R.string.timeline_mood),
                     style = MaterialTheme.typography.labelMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -350,7 +352,7 @@ fun EditEntryDialog(
                 OutlinedTextField(
                     value = editedText,
                     onValueChange = { editedText = it },
-                    label = { Text("Your line") },
+                    label = { Text(stringResource(R.string.timeline_your_line)) },
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(12.dp),
                     minLines = 2,
@@ -377,12 +379,12 @@ fun EditEntryDialog(
                 },
                 enabled = editedText.isNotBlank()
             ) {
-                Text("Save")
+                Text(stringResource(R.string.save))
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel")
+                Text(stringResource(R.string.cancel))
             }
         }
     )

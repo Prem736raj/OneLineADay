@@ -11,6 +11,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.onelineaday.journal.R
 import com.onelineaday.journal.ui.components.*
 import com.onelineaday.journal.ui.theme.*
 import com.onelineaday.journal.viewmodel.JournalUiState
@@ -51,7 +53,7 @@ fun StatsScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = "Your Journey",
+                        text = stringResource(R.string.stats_your_journey),
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold
                     )
@@ -84,18 +86,18 @@ fun StatsScreen(
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 StatsCard(
-                    title = "Total Entries",
+                    title = stringResource(R.string.total_entries),
                     value = uiState.totalEntries.toString(),
-                    subtitle = "memories captured",
+                    subtitle = stringResource(R.string.stats_memories_captured),
                     icon = Icons.Rounded.Book,
                     gradientColors = listOf(AccentTeal, AccentTeal.copy(blue = 0.6f)),
                     modifier = Modifier.weight(1f)
                 )
                 
                 StatsCard(
-                    title = "Journey",
+                    title = stringResource(R.string.stats_journey),
                     value = journeyDays.toString(),
-                    subtitle = "days since start",
+                    subtitle = stringResource(R.string.stats_days_since_start),
                     icon = Icons.Rounded.Timeline,
                     gradientColors = listOf(LavenderMid, LavenderDark),
                     modifier = Modifier.weight(1f)
@@ -108,18 +110,18 @@ fun StatsScreen(
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 StatsCard(
-                    title = "This Week",
+                    title = stringResource(R.string.stats_this_week),
                     value = thisWeekEntries.toString(),
-                    subtitle = "${7 - thisWeekEntries} days left",
+                    subtitle = stringResource(R.string.stats_days_left, 7 - thisWeekEntries),
                     icon = Icons.Rounded.DateRange,
                     gradientColors = listOf(MoodMotivated, MoodMotivated.copy(green = 0.6f)),
                     modifier = Modifier.weight(1f)
                 )
                 
                 StatsCard(
-                    title = "This Month",
+                    title = stringResource(R.string.stats_this_month),
                     value = thisMonthEntries.toString(),
-                    subtitle = "entries",
+                    subtitle = stringResource(R.string.stats_entries),
                     icon = Icons.Rounded.CalendarMonth,
                     gradientColors = listOf(SunsetRose, SunsetPink),
                     modifier = Modifier.weight(1f)
@@ -161,7 +163,7 @@ fun MilestonesCard(
             modifier = Modifier.padding(20.dp)
         ) {
             Text(
-                text = "Milestones",
+                text = stringResource(R.string.stats_milestones),
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold
             )
@@ -170,11 +172,11 @@ fun MilestonesCard(
             
             // Entry milestones
             val entryMilestones = listOf(
-                Triple(7, "First Week", "📅"),
-                Triple(30, "One Month", "📆"),
-                Triple(100, "Century Club", "💯"),
-                Triple(365, "One Year", "🎉"),
-                Triple(1000, "Legendary", "🏆")
+                Triple(7, stringResource(R.string.stats_first_week), "📅"),
+                Triple(30, stringResource(R.string.stats_one_month), "📆"),
+                Triple(100, stringResource(R.string.stats_century_club), "💯"),
+                Triple(365, stringResource(R.string.stats_one_year), "🎉"),
+                Triple(1000, stringResource(R.string.stats_legendary), "🏆")
             )
             
             entryMilestones.forEach { (target, label, emoji) ->
