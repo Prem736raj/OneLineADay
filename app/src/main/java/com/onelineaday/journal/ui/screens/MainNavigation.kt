@@ -168,7 +168,18 @@ fun MainNavigation(
                     viewModel = viewModel,
                     uiState = uiState,
                     isDarkMode = isDarkMode,
-                    onDarkModeChange = onDarkModeChange
+                    onDarkModeChange = onDarkModeChange,
+                    onNavigateToPrivacyPolicy = { navController.navigate("privacy_policy") }
+                )
+            }
+            
+            composable(
+                route = "privacy_policy",
+                enterTransition = { fadeIn() + slideInHorizontally() },
+                exitTransition = { fadeOut() + slideOutHorizontally() }
+            ) {
+                PrivacyPolicyScreen(
+                    onBackClick = { navController.popBackStack() }
                 )
             }
         }

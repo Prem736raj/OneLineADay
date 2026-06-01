@@ -48,6 +48,7 @@ fun SettingsScreen(
     uiState: JournalUiState,
     isDarkMode: Boolean,
     onDarkModeChange: (Boolean) -> Unit,
+    onNavigateToPrivacyPolicy: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
@@ -201,20 +202,7 @@ fun SettingsScreen(
                     isLoading = isExporting
                 )
                 
-                HorizontalDivider(
-                    modifier = Modifier.padding(start = 56.dp),
-                    color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
-                )
-                
-                SettingsItem(
-                    icon = Icons.Rounded.Widgets,
-                    title = "Refresh Widget",
-                    subtitle = "Update home screen widget",
-                    onClick = { 
-                        JournalWidget.updateAllWidgets(context)
-                        Toast.makeText(context, "Widget refreshed!", Toast.LENGTH_SHORT).show()
-                    }
-                )
+
                 
                 HorizontalDivider(
                     modifier = Modifier.padding(start = 56.dp),
@@ -272,15 +260,33 @@ fun SettingsScreen(
                 )
                 
                 SettingsItem(
-                    icon = Icons.Rounded.PrivacyTip,
-                    title = "Privacy Policy",
-                    subtitle = "Read our privacy terms",
+                    icon = Icons.Rounded.Share,
+                    title = "Share this app",
+                    subtitle = "Share with your friends",
                     onClick = {
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://prem736raj.github.io/OneLineADay/privacy-policy.html"))
+                        val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                            type = "text/plain"
+                            putExtra(Intent.EXTRA_SUBJECT, "One Line A Day")
+                            putExtra(Intent.EXTRA_TEXT, "Check out this amazing journaling app: https://play.google.com/store/apps/details?id=${context.packageName}")
+                        }
+                        context.startActivity(Intent.createChooser(shareIntent, "Share app via"))
+                    }
+                )
+
+                HorizontalDivider(
+                    modifier = Modifier.padding(start = 56.dp),
+                    color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
+                )
+
+                SettingsItem(
+                    icon = Icons.Rounded.Star,
+                    title = "Rate this app",
+                    subtitle = "Leave a review on Play Store",
+                    onClick = {
                         try {
-                            context.startActivity(intent)
-                        } catch (e: Exception) {
-                            Toast.makeText(context, "Cannot open browser", Toast.LENGTH_SHORT).show()
+                            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=${context.packageName}")))
+                        } catch (e: android.content.ActivityNotFoundException) {
+                            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=${context.packageName}")))
                         }
                     }
                 )
@@ -291,10 +297,10 @@ fun SettingsScreen(
                 )
                 
                 SettingsItem(
-                    icon = Icons.Rounded.Code,
-                    title = "Made with ❤️",
-                    subtitle = "One Line A Day",
-                    onClick = { }
+                    icon = Icons.Rounded.PrivacyTip,
+                    title = "Privacy Policy",
+                    subtitle = "Read our privacy terms",
+                    onClick = onNavigateToPrivacyPolicy
                 )
             }
             
