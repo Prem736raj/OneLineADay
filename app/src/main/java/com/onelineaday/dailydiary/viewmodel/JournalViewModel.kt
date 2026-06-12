@@ -243,6 +243,16 @@ class JournalViewModel(application: Application) : AndroidViewModel(application)
                 }
             }
             
+            // Backup Audio Memories
+            filesDir.listFiles()?.forEach { file ->
+                if (file.name.startsWith("audio_") && file.name.endsWith(".m4a")) {
+                    val entry = java.util.zip.ZipEntry("audio/${file.name}")
+                    zipOut.putNextEntry(entry)
+                    file.inputStream().copyTo(zipOut)
+                    zipOut.closeEntry()
+                }
+            }
+            
             zipOut.close()
             
             androidx.core.content.FileProvider.getUriForFile(
@@ -271,6 +281,8 @@ class JournalViewModel(application: Application) : AndroidViewModel(application)
                             File(dbFolder, entry.name.removePrefix("db/"))
                         } else if (entry.name.startsWith("photos/")) {
                             File(filesDir, entry.name.removePrefix("photos/"))
+                        } else if (entry.name.startsWith("audio/")) {
+                            File(filesDir, entry.name.removePrefix("audio/"))
                         } else {
                             null
                         }
