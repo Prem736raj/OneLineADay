@@ -68,3 +68,10 @@ signing.properties
 *_log.txt
 *_output.txt
 log.txt
+
+# Temporary helper scripts
+commit_101.py
+update_icon.py
+
+# Gemini IDE
+.gemini/
