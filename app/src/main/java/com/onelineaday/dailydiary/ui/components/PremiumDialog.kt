@@ -24,6 +24,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.onelineaday.dailydiary.PremiumManager
+import com.onelineaday.dailydiary.billing.BillingManager
+import android.app.Activity
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -138,12 +140,13 @@ fun PremiumDialog(
                 
                 Button(
                     onClick = {
-                        if (selectedPlan != null) {
-                            // Simulate Purchase
-                            PremiumManager.setPremium(context, true)
-                            Toast.makeText(context, "Welcome to Premium! Ads removed.", Toast.LENGTH_LONG).show()
+                        val activity = context as? Activity
+                        if (selectedPlan != null && activity != null) {
+                            val productId = if (selectedPlan == "monthly") BillingManager.PRODUCT_MONTHLY else BillingManager.PRODUCT_LIFETIME
+                            val isSub = selectedPlan == "monthly"
+                            BillingManager.launchBillingFlow(activity, productId, isSub)
                             onDismiss()
-                        } else {
+                        } else if (selectedPlan == null) {
                             Toast.makeText(context, "Please select a plan", Toast.LENGTH_SHORT).show()
                         }
                     },
