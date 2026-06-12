@@ -54,21 +54,27 @@ fun HomeScreen(
     val context = LocalContext.current
     val scrollState = rememberScrollState()
     
-    var entryText by remember { mutableStateOf("") }
-    var selectedMood by remember { mutableStateOf(Mood.NEUTRAL) }
-    var photoUri by remember { mutableStateOf<String?>(null) }
+    var entryText by remember { mutableStateOf(uiState.todayEntry?.content ?: "") }
+    var selectedMood by remember { mutableStateOf(uiState.todayEntry?.mood ?: Mood.NEUTRAL) }
+    var photoUri by remember { mutableStateOf<String?>(uiState.todayEntry?.photoUri) }
+    
+    // Update form when todayEntry changes (e.g. initial load)
+    LaunchedEffect(uiState.todayEntry) {
+        if (uiState.todayEntry != null && entryText.isBlank() && photoUri == null) {
+            entryText = uiState.todayEntry.content
+            selectedMood = uiState.todayEntry.mood
+            photoUri = uiState.todayEntry.photoUri
+        }
+    }
     
     val focusRequester = remember { FocusRequester() }
     
     var showPremiumDialog by remember { mutableStateOf(false) }
     
-    // When entry is saved, clear the form completely for a fresh start
+    // When entry is saved, show a success message but DO NOT clear the form
+    // The form should display today's entry so the user can continue editing if they want.
     LaunchedEffect(uiState.entrySaved) {
         if (uiState.entrySaved) {
-            // Clear the form after saving
-            entryText = ""
-            selectedMood = Mood.NEUTRAL
-            photoUri = null
             viewModel.clearEntrySavedFlag()
         }
     }
