@@ -7,15 +7,15 @@ plugins {
 
 android {
     namespace = "com.onelineaday.dailydiary"
-    compileSdk = 34
+    compileSdk = 35
     ndkVersion = "25.0.1"
 
     defaultConfig {
         applicationId = "com.onelineaday.dailydiary"
         minSdk = 26
         targetSdk = 35
-        versionCode = 3
-        versionName = "3.0"
+        versionCode = 4
+        versionName = "4.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -89,6 +89,9 @@ dependencies {
     
     // Google AdMob
     implementation("com.google.android.gms:play-services-ads:23.6.0")
+    
+    // Google Play Billing
+    implementation("com.android.billingclient:billing-ktx:6.1.0")
     
     // Google Fonts
     implementation("androidx.compose.ui:ui-text-google-fonts:1.6.0")
