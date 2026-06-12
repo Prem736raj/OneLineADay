@@ -15,3 +15,22 @@
 # Google Mobile Ads
 -keep class com.google.android.gms.ads.** { *; }
 -dontwarn com.google.android.gms.ads.**
+
+# Google Play Billing
+-keep class com.android.billingclient.** { *; }
+-dontwarn com.android.billingclient.**
+-keep class com.android.vending.billing.** { *; }
+
+# Keep Kotlin coroutines
+-dontwarn kotlinx.coroutines.**
+
+# Keep Compose
+-dontwarn androidx.compose.**
+
+# Coil
+-dontwarn coil.**
+-keep class coil.** { *; }
+
+# Keep Biometric
+-keep class androidx.biometric.** { *; }
+-dontwarn androidx.biometric.**
