@@ -68,7 +68,10 @@ object InterstitialAdManager {
      * [onAdDismissed] is called when the ad is closed (or if it wasn't shown).
      */
     fun showAdIfTimePassed(activity: Activity, onAdDismissed: () -> Unit = {}) {
-        if (com.onelineaday.dailydiary.PremiumManager.isPremium.value) return
+        if (com.onelineaday.dailydiary.PremiumManager.isPremium.value) {
+            onAdDismissed()
+            return
+        }
 
         val currentTime = System.currentTimeMillis()
         val timePassed = currentTime - lastAdShownTime
