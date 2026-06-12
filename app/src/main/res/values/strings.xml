@@ -70,6 +70,11 @@
     <string name="toast_no_email_client">No email client found</string>
     <string name="toast_share_pdf">Share Journal PDF</string>
 
+    <!-- Rewarded Ad Dialog -->
+    <string name="ad_dialog_title">Export to PDF</string>
+    <string name="ad_dialog_message">Watch a short video to unlock your PDF export. This helps us keep the app free!</string>
+    <string name="ad_dialog_watch">Watch &amp; Export</string>
+
     <!-- Home Screen -->
     <string name="home_day_streak">day streak</string>
     <string name="home_memories">memories</string>
@@ -119,7 +124,7 @@
     <string name="privacy_section_3_title">3. Device Permissions</string>
     <string name="privacy_section_3_content">To support its core journaling features, the app requests the following system permissions:\n\n• Notifications (POST_NOTIFICATIONS): Used only to deliver daily reminder alerts prompting you to write your entry. This permission is requested at runtime on supported Android versions, and you can disable reminders or permissions at any time.\n• Receive Boot Completed (RECEIVE_BOOT_COMPLETED): Used to automatically restore and reschedule your configured daily reminder notifications whenever your device is restarted.\n\nThe app does not request or require permissions to access your contacts, location, accounts, microphone, camera, or general external file storage directories.</string>
     <string name="privacy_section_4_title">4. Third-Party Libraries</string>
-    <string name="privacy_section_4_content">The app uses a small number of open-source third-party dependencies to improve functionality:\n\n• Coil: Used locally to load and display attached images on the screens.\n• iText PDF: Used locally on your device to compile and render your journal database into a shareable PDF format.\n\nThese libraries operate fully locally within the app and do not collect, store, or transmit your personal data externally.</string>
+    <string name="privacy_section_4_content">The app uses a small number of open-source third-party dependencies to improve functionality:\n\n• Coil: Used locally to load and display attached images on the screens.\n• iText PDF: Used locally on your device to compile and render your journal database into a shareable PDF format.\n• Google AdMob: Used to display optional rewarded video ads before PDF export. AdMob may collect device identifiers and usage data as described in Google\'s Privacy Policy (https://policies.google.com/privacy). No personal journal data is shared with AdMob.\n\nCoil and iText operate fully locally within the app and do not collect, store, or transmit your personal data externally.</string>
     <string name="privacy_section_5_title">5. Security of Your Data</string>
     <string name="privacy_section_5_content">Because all data remains strictly on your own physical device, the security of your journal relies on your device\'s overall security settings. We recommend securing your device with a PIN, pattern, password, or biometric lock to prevent unauthorized physical access to your device and journal entries.</string>
     <string name="privacy_section_6_title">6. Children\'s Privacy</string>
