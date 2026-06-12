@@ -6,16 +6,16 @@ plugins {
 }
 
 android {
-    namespace = "com.onelineaday.journal"
+    namespace = "com.onelineaday.dailydiary"
     compileSdk = 34
     ndkVersion = "25.0.1"
 
     defaultConfig {
-        applicationId = "com.onelineaday.journal"
+        applicationId = "com.onelineaday.dailydiary"
         minSdk = 26
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        targetSdk = 35
+        versionCode = 3
+        versionName = "3.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -67,6 +67,9 @@ dependencies {
     // Navigation
     implementation("androidx.navigation:navigation-compose:2.7.6")
     
+    // Biometric Authentication
+    implementation("androidx.biometric:biometric:1.2.0-alpha05")
+    
     // Room Database
     implementation("androidx.room:room-runtime:2.7.1")
     implementation("androidx.room:room-ktx:2.7.1")
@@ -83,6 +86,9 @@ dependencies {
     
     // PDF generation
     implementation("com.itextpdf:itext7-core:7.2.5")
+    
+    // Google AdMob
+    implementation("com.google.android.gms:play-services-ads:23.6.0")
     
     // Google Fonts
     implementation("androidx.compose.ui:ui-text-google-fonts:1.6.0")
