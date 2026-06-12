@@ -23,12 +23,14 @@ import androidx.lifecycle.LifecycleEventObserver
 import com.onelineaday.dailydiary.ui.screens.LockScreen
 import com.onelineaday.dailydiary.ui.screens.MainNavigation
 import com.onelineaday.dailydiary.ui.theme.OneLineADayTheme
+import com.onelineaday.dailydiary.billing.BillingManager
 
 class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         PremiumManager.init(this)
+        BillingManager.init(this)
         enableEdgeToEdge()
         
         setContent {
